@@ -8,6 +8,7 @@
   },
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
     "i18next": "^25.8.0",
     "i18next-browser-languagedetector": "^8.2.0"
   }

@@ -48,18 +48,17 @@ let startWPM = 0;
 let accelerationTime = 0;
 let startTime = 0;
 let timerId = null;
-let textInput = document.getElementById('input-text');
+
+document.getElementById('input-text');
 
 /**
  * Inicia el ciclo de lectura. Gestiona la aceleración progresiva de WPM inicial a objetivo.
  */
 function startExercise() {
     const text = document.getElementById('input-text').value;
-    console.log('Element input-text:', !!textInput);
-    console.log('Valor del text:', textInput?.value);
 
     if (!text.trim()) {
-        alert('Por favor, introduce un texto para practicar.');
+        alert('Si us plau, introdueix un text per practicar.');
         return;
     }
 
@@ -90,8 +89,24 @@ function startExercise() {
     toggleInputPopup(false);
     document.getElementById('controls-overlay').style.display = 'flex';
 
+    // Inicialitzar el comptador de paraules
+    updateWordCounter(0, wordsArray.length);
+
     // Iniciar bucle de lectura
     renderNextWord();
+}
+
+// Funció per actualitzar el comptador de paraules
+function updateWordCounter(current, total) {
+    const counter = document.getElementById('word-counter');
+    counter.textContent = `${current}/${total}`;
+}
+
+
+// Funció per actualitzar l'indicador de velocitat actual
+function updateWPMCounter(wpm) {
+    const counter = document.getElementById('wpm-counter');
+    counter.textContent = `${Math.round(wpm)} PPM`;
 }
 
 /**
@@ -119,7 +134,9 @@ function renderNextWord() {
     // Alinear la letra resaltada con la guía vertical
     alignFocusLetter(wordContainer, focusIndex);
 
-    // Actualizar barra de progreso
+    // Actualitzar barra de progrés i comptador
+    updateWPMCounter(currentWPM);
+    updateWordCounter(currentIndex + 1, wordsArray.length); // +1 perquè currentIndex comença en 0
     updateProgressBar(currentIndex, wordsArray.length);
 
     // Calcular delay actual
@@ -152,8 +169,8 @@ function stopExercise() {
         timerId = null;
     }
     // Mostrar mensaje de finalización
-    document.getElementById('word-display').textContent = '¡Fin!';
-    document.getElementById('controls-overlay').style.display = 'none';
+    document.getElementById('word-display').textContent = '';
+    // document.getElementById('controls-overlay').style.display = 'none';
     // Volver a mostrar el botón de configuración
     document.getElementById('config-btn').style.display = 'flex';
 }
@@ -190,9 +207,8 @@ function updateFontSize(scale) {
 /**
  * Ajusta la posición horizontal del contenedor de la palabra para que la letra resaltada quede alineada con la guía vertical.
  * @param {HTMLElement} wordContainer - Elemento que contiene la palabra completa con la letra resaltada.
- * @param {number} focusIndex - Índice de la letra resaltada en la palabra.
  */
-function alignFocusLetter(wordContainer, focusIndex) {
+function alignFocusLetter(wordContainer) {
     const highlightSpan = wordContainer.querySelector('.highlight');
     if (!highlightSpan) return;
 
@@ -217,7 +233,7 @@ function alignFocusLetter(wordContainer, focusIndex) {
  */
 function updateProgressBar(current, total) {
     const progressBar = document.getElementById('progress-bar');
-    const percentage = (current / total) * 100;
+    const percentage = ((current + 1) / total) * 100;
     progressBar.style.width = `${percentage}%`;
 }
 
@@ -227,13 +243,16 @@ function updateProgressBar(current, total) {
  */
 function toggleInputPopup(visible) {
     const popup = document.getElementById('input-popup');
+    const overlay = document.getElementById('popup-overlay');
     const configBtn = document.getElementById('config-btn');
 
     if (visible) {
         popup.style.display = 'block';
+        overlay.style.display = 'block';
         configBtn.style.display = 'none';
     } else {
         popup.style.display = 'none';
+        overlay.style.display = 'none';
         configBtn.style.display = 'flex';
     }
 }
@@ -258,8 +277,43 @@ function initializeFontSize() {
     }
 }
 
+// Funció per actualitzar el comptador de paraules del textarea
+function updateInputWordCount() {
+    const textarea = document.getElementById('input-text');
+    const wordCountElement = document.getElementById('word-count');
+    const words = tokenizeText(textarea.value);
+    const count = words.length;
+    wordCountElement.textContent = `${count} ${count === 1 ? 'paraula' : 'paraules'}`;
+}
+
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
+    // Mostrar el popup inicialment
+    toggleInputPopup(true);
+    
+    // Event listener per l'overlay
+    const overlay = document.getElementById('popup-overlay');
+    if (overlay) {
+        overlay.addEventListener('mousedown', (e) => {
+            e.preventDefault(); // Prevenir comportament per defecte
+            toggleInputPopup(false);
+        });
+    }
+
+    // Event listener per l'input textarea/
+    const textarea = document.getElementById('input-text');
+    textarea.addEventListener('input', updateInputWordCount);
+
+
+    // Evitar que els clics dins del popup tanquin l'overlay
+    const popup = document.getElementById('input-popup');
+    if (popup) {
+        popup.addEventListener('mousedown', (e) => {
+            e.stopPropagation(); // Evitar que el clic es propagui a l'overlay
+        });
+    }
+
     // Theme toggle
     const themeToggleBtn = document.getElementById('theme-toggle');
     themeToggleBtn.addEventListener('click', () => {
@@ -282,6 +336,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start button
     const startBtn = document.getElementById('start-button');
     startBtn.addEventListener('click', () => {
+        document.getElementById('start-button').style.display = 'none';
+
         document.getElementById('stop-button').style.display = 'inline-block';
         startExercise();
     });
@@ -291,21 +347,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const stopBtn = document.getElementById('stop-button');
     stopBtn.addEventListener('click', () =>{
         document.getElementById('stop-button').style.display = 'none';
+        document.getElementById('start-button').style.display = 'inline-block';
         stopExercise();
     });
 
-    // Close popup when clicking outside
-    const popup = document.getElementById('input-popup');
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            toggleInputPopup(false);
-        }
-    });
 
     // Initialize settings on load
     initializeTheme();
     initializeFontSize();
-
-    // Initially hide the popup
-    toggleInputPopup(false);
 });
