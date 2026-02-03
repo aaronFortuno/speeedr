@@ -1,16 +1,21 @@
+/* Variables i configuració global */
 :root {
+    /* Colors principals */
     --bg-color: #ffffff;
     --text-color: #000000;
     --accent-color: #ff0000;
     --ui-gray: #dddddd;
     --progress-fill: #555555;
     --hover-color: #f0f0f0;
+
+    --transition-duration: 0.3s;
 }
 
+/* Mode fosc */
 .dark-mode {
     --bg-color: #121212;
     --text-color: #ffffff;
-    --ui-gray: #333333;
+    --ui-gray: #636363;
     --progress-fill: #aaaaaa;
 }
 
@@ -20,6 +25,7 @@
     box-sizing: border-box;
 }
 
+/* Estils base */
 body {
     height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,10 +34,10 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
-/* Controles superiores */
+/* Controls superiors */
 .top-controls {
     position: fixed;
     top: 20px;
@@ -55,7 +61,11 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* Slider de fuente vertical */
+.icon-btn:hover {
+    opacity: 1;
+}
+
+/* Control de mida de font */
 .font-slider-container {
     position: fixed;
     right: 20px;
@@ -75,7 +85,7 @@ body {
     cursor: pointer;
 }
 
-/* Área de visualización */
+/* Contenidor principal i guia */
 #main-container {
     flex: 1;
     display: flex;
@@ -83,6 +93,20 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
+}
+
+/* Guía visual (línea vertical) */
+#focus-guide {
+    position: absolute;
+    top: 50%;
+    left: 33.33%; /* un tercio de la pantalla */
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 100%;
+    background-color: var(--accent-color);
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0; /* Col·loquem la guia per sota del text */
 }
 
 #word-display {
@@ -95,30 +119,25 @@ body {
     background-color: var(--bg-color); /* Mateix color que el fons */
     padding: 0.2em 0.5em; /* Afegim padding per evitar que la guia es vegi pels costats */
     z-index: 1; /* Col·loquem el text per sobre de la guia */
+    transition: background-color var(--transition-duration), color var(--transition-duration);
+
 }
 
 .highlight {
     color: var(--accent-color);
 }
 
-/* Barra de progreso */
-#progress-bar-container {
-    height: 6px;
-    background-color: var(--ui-gray);
-    width: 100%;
+/* Popup i overlay */
+#popup-overlay {
     position: fixed;
-    bottom: 0;
+    top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 750;
 }
 
-#progress-bar {
-    height: 100%;
-    width: 0;
-    background-color: var(--progress-fill);
-    transition: width 0.1s linear;
-}
-
-/* Popup */
 #input-popup {
     position: fixed;
     top: 50%;
@@ -133,8 +152,17 @@ body {
     max-width: 500px;
     border-radius: 12px;
     display: block;
-    animation: fadeIn 0.3s ease-in-out;
 }
+
+#input-popup.visible {
+    display: block;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+#input-popup.hiding {
+    animation: fadeOut 0.3s ease-out forwards;
+}
+
 
 @keyframes fadeIn {
     from {
@@ -147,6 +175,75 @@ body {
     }
 }
 
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+}
+
+.sample-text-selector {
+    margin-bottom: 1rem;
+}
+
+.sample-text-selector label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+#sample-text-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--ui-gray);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+#sample-text-select:hover {
+    border-color: var(--accent-color);
+}
+
+#sample-text-select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.dark-mode #sample-text-select {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.config-row {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.config-row label {
+    flex: 1;
+    font-weight: 600;
+}
+
+.config-row input {
+    flex: 1;
+    max-width: 100px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--ui-gray);
+    font-size: 1rem;
+    text-align: center;
+}
 
 #input-popup h3 {
     margin-bottom: 15px;
@@ -175,55 +272,7 @@ body {
     border-bottom: 1px solid var(--ui-gray);
 }
 
-.config-row {
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.config-row label {
-    flex: 1;
-    font-weight: 600;
-}
-
-.config-row input {
-    flex: 1;
-    max-width: 100px;
-    padding: 6px 8px;
-    border-radius: 6px;
-    border: 1px solid var(--ui-gray);
-    font-size: 1rem;
-    text-align: center;
-}
-
-.primary-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 10px;
-    user-select: none;
-}
-
-.stop-btn {
-    background-color: #dc3545;
-}
-
-#word-counter {
-    color: var(--progress-fill);
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-right: 15px;
-    min-width: 70px;
-    text-align: right;
-    font-family: 'Segoe UI', monospace;
-}
-
+/* Controls inferiors i comptadors */
 #controls-overlay {
     position: fixed;
     bottom: 20px;
@@ -233,49 +282,37 @@ body {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    z-index: 1000;
+    z-index: 500;
 }
 
-/* Guía visual (línea vertical) */
-#focus-guide {
-    position: absolute;
-    top: 50%;
-    left: 33.33%; /* un tercio de la pantalla */
-    transform: translate(-50%, -50%);
-    width: 5px;
-    height: 100%;
-    background-color: var(--accent-color);
-    opacity: 0.2;
-    pointer-events: none;
-    z-index: 0; /* Col·loquem la guia per sota del text */
-}
-
-#popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-#input-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    /* ... resta d'estils ... */
-}
-
-
-/* Estils per al botó d'idioma i el seu popup */
-#language-btn {
+#word-counter, #wpm-counter {
+    color: var(--progress-fill);
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: 600;
+    margin-right: 15px;
+    min-width: 70px;
+    text-align: right;
+    font-family: 'Segoe UI', monospace;
 }
 
+/* Barra de progrés */
+#progress-bar-container {
+    height: 6px;
+    background-color: var(--ui-gray);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: var(--progress-fill);
+    transition: width 0.1s linear;
+}
+
+/* Selector d'idioma */
 #language-popup {
     display: none;
     position: fixed;
@@ -316,13 +353,19 @@ body {
     background-color: var(--hover-color);
 }
 
-#wpm-counter {
-    color: var(--progress-fill);
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-left: 15px;
-    min-width: 70px;
-    text-align: left;
-    font-family: 'Segoe UI', monospace;
-}
+/* Responsivitat */
+@media (max-width: 768px) {
+    #word-display {
+        font-size: 6rem;
+    }
 
+    #input-popup {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .config-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

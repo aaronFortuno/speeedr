@@ -1,0 +1,34 @@
+export const sampleTexts = {
+    "text1": {
+        "title": "La Generalitat: el cor de les institucions catalanes",
+        "text": "La Generalitat de Catalunya és una de les institucions de govern més antigues d'Europa. Els seus orígens es remunten al segle XIV, quan es va crear la Diputació del General per recaptar impostos i vigilar que es complissin les lleis catalanes. Amb el pas del temps, aquesta institució va anar guanyant poder polític fins a convertir-se en el govern propi dels catalans. Tanmateix, la seva història no ha estat fàcil: l'any 1714, després de la Guerra de Successió, les institucions catalanes van ser abolides i no es van recuperar fins al segle XX.\n" +
+            "\n" +
+            "L'any 1931, amb la proclamació de la República, la Generalitat va tornar a néixer sota el lideratge de Francesc Macià. Va ser una època de grans esperances on es van modernitzar les escoles i la cultura, però la Guerra Civil i la dictadura posterior van tornar a prohibir el govern català durant gairebé quaranta anys. Durant aquest llarg exili, el president Josep Tarradellas va mantenir viva la flama de la institució fins que, l'any 1977, va poder tornar a Barcelona per restaurar definitivament l'autogovern que coneixem avui dia.\n" +
+            "\n" +
+            "Actualment, la Generalitat gestiona aspectes fonamentals de la vida diària, com l'educació, la sanitat i la policia. Però el debat sobre el seu futur continua ben viu. En els darrers anys, una part important de la societat catalana ha expressat el desig que Catalunya esdevingui un estat independent. Aquest projecte de futur imagina una Generalitat amb poders totals, que no només gestioni els serveis bàsics, sinó que també tingui el control complet de les seves fronteres, la seva economia i la seva representació directa davant del món.\n" +
+            "\n" +
+            "Mirar cap al futur de la Generalitat implica pensar en com s'organitzarà la convivència i quins reptes haurà d'afrontar el país. Tant si es manté dins del marc actual com si avança cap a la independència, la institució té el repte de seguir sent el motor de la democràcia a Catalunya. El futur és a les mans de les noves generacions, que hauran de decidir quin camí volen seguir per garantir que la Generalitat continuï sent, com ho ha estat durant segles, el símbol de la voluntat de ser del poble català."
+    },
+    "text2": {
+        "title": "El misteri de la Muntanya Sagrada",
+        "text": "La història del monestir de Montserrat és tan fascinant com les agulles de roca que l'envolten. Tot va començar l'any 880, quan, segons explica la llegenda, uns nens pastors van veure una gran llum que baixava del cel i sentiren una melodia celestial que sortia d'una cova a la muntanya. Encuriosits, van avisar els seus pares i el rector del poble, i en entrar a la cova van descobrir la imatge de la Mare de Déu, coneguda popularment com la Moreneta pel seu color fosc.\n" +
+            "\n" +
+            "Davant d'aquell descobriment, el bisbe de Manresa va voler traslladar la imatge fins a la ciutat, però va succeir un fet extraordinari: a mesura que intentaven baixar-la, la figura es tornava cada vegada més pesada, fins que va ser impossible moure-la més. El bisbe va interpretar aquest fet com un senyal diví: la Verge volia quedar-se en aquella muntanya. Així, es va decidir construir una petita ermita en aquell mateix indret, que seria l'embrió del que més tard es convertiria en un dels monestirs més importants del món.\n" +
+            "\n" +
+            "L'any 1025, l'abat Oliba, una de les figures més influents de la Catalunya medieval, va fundar oficialment el monestir de Montserrat. Oliba no només era un gran constructor, sinó també un home de pau que va convertir el monestir en un centre de cultura i espiritualitat. Amb el pas dels segles, el monestir va anar creixent en dimensions i prestigi, sobrevivint a guerres i destruccions, com la que va patir durant la Guerra del Francès al segle XIX, quan va haver de ser reconstruït gairebé del tot.\n" +
+            "\n" +
+            "Avui dia, Montserrat no és només un centre religiós, sinó un símbol de la identitat catalana i un refugi per a la natura i la cultura. L'escolania, el cor de nens cantors més antic d'Europa, continua omplint la basílica amb les seves veus, recordant-nos que tot va començar amb una llum misteriosa i una voluntat ferma de protegir aquest indret únic al món."
+    },
+    "text3": {
+        title: "L'encàrrec que va transformar Barcelona",
+        text: "L’any 1883, un jove arquitecte anomenat Antoni Gaudí va rebre una proposta que canviaria la seva vida i la història de Barcelona per sempre. En aquell moment, Gaudí només tenia 31 anys i, tot i que ja començava a destacar pel seu estil original, ningú podia imaginar que acabaria dedicant més de quaranta anys a una sola obra: la Sagrada Família.\n" +
+            "\n" +
+            "La construcció de la basílica no havia començat amb ell. De fet, el projecte original estava en mans d’un altre arquitecte, Francisco de Paula del Villar, que l’havia dissenyat amb un estil neogòtic molt tradicional, similar a moltes altres esglésies de l’època. Tanmateix, a causa de discrepàncies amb els promotors sobre els materials i el cost de la construcció, Del Villar va decidir abandonar el projecte quan tot just s’havien aixecat les primeres columnes de la cripta.\n" +
+            "\n" +
+            "Va ser llavors quan el destí va intervenir. Joan Martorell, que era el mestre i mentor de Gaudí, va recomanar el seu jove deixeble per continuar l’obra. Quan Gaudí va acceptar l’encàrrec el 3 de novembre de 1883, no es va limitar a seguir els plànols que ja existien. Amb una visió revolucionària, va decidir transformar completament el disseny original. En lloc d’una església convencional, va imaginar un \"temple de la natura\" ple de formes orgàniques, torres altíssimes i una simbologia religiosa profunda.\n" +
+            "\n" +
+            "Gaudí sabia que una obra de tal magnitud no es podria acabar ràpidament. De fet, sovint deia amb humor que el seu \"client\" (referint-se a Déu) no tenia pressa. Per això, va acceptar el repte amb la humilitat de saber que ell només en posaria les bases. Durant els primers anys, va compaginar la Sagrada Família amb altres encàrrecs, però cap al final de la seva vida es va instal·lar a viure dins del mateix taller del temple, entregant-se en cos i ànima a la seva gran passió.\n" +
+            "\n" +
+            "Avui dia, quan mirem les torres de la Sagrada Família retallant-se contra el cel de Barcelona, recordem aquell moment de 1883. L’acceptació d’aquell encàrrec no va ser només un tràmit administratiu, sinó el naixement d’un símbol universal que encara avui, més d’un segle després, continua creixent gràcies a la valentia d’aquell jove arquitecte."
+    }
+};
