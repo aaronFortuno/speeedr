@@ -37,6 +37,22 @@ body {
     transition: background-color var(--transition-duration), color var(--transition-duration);
 }
 
+/* Títol */
+#project-title {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: var(--progress-fill);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    z-index: 50;
+    pointer-events: none; /* Per evitar que interfereixi amb els controls */
+}
+
+
 /* Controls superiors */
 .top-controls {
     position: fixed;
@@ -355,6 +371,10 @@ body {
 
 /* Responsivitat */
 @media (max-width: 768px) {
+    #project-title {
+        font-size: 1.2rem;
+    }
+
     #word-display {
         font-size: 6rem;
     }
