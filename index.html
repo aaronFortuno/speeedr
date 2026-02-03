@@ -9,11 +9,11 @@
 </head>
 <body>
 <div class="top-controls">
-    <button id="config-btn" class="icon-btn" title="Configurar texto">⚙️</button>
-    <button id="theme-toggle" class="icon-btn" title="Modo Oscuro">🔅</button>
+    <button id="config-btn" class="icon-btn" title="Configurar texto"><i class="fa-solid fa-gear"></i>️</button>
+    <button id="theme-toggle" class="icon-btn" title="Modo Oscuro"><i class="fa-solid fa-circle-half-stroke"></i></button>
     <!--
     <button id="language-btn" class="icon-btn">
-        <span id="current-language">🌐</span>
+        <span id="current-language"><i class="fa-solid fa-language"></i></span>
     </button>
     -->
 </div>
@@ -37,12 +37,22 @@
 
 <div id="main-container">
     <div id="focus-guide"></div>
-    <div id="word-display">...</div>
+    <div id="word-display">ajusta la mida <i class="fa-solid fa-arrow-right"></i></div>
 </div>
 
 <div id="popup-overlay"></div>
 <div id="input-popup" role="dialog" aria-modal="true" aria-labelledby="input-popup-label">
     <h3 id="input-popup-label">Configuració de l'exercici</h3>
+
+    <!-- Selector de textos de mostra -->
+    <div class="sample-text-selector">
+        <label for="sample-text-select">Text de mostra:</label>
+        <select id="sample-text-select">
+            <option value="">-- Selecciona un text o escriu el teu --</option>
+        </select>
+    </div>
+
+    <!-- Àrea de textos -->
     <label for="input-text"></label>
     <textarea id="input-text" placeholder="Enganxa aquí el teu text..."></textarea>
     <div id="word-count" class="word-count-info">0 paraules</div>

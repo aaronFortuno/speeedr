@@ -1,4 +1,34 @@
-// --- Procesamiento de texto ---
+// Importem els textos de mostra
+import { sampleTexts } from './sample-texts.js';
+import i18next from 'https://unpkg.com/i18next@25.8.0/dist/esm/i18next.js';
+import LanguageDetector from 'https://unpkg.com/i18next-browser-languagedetector@8.2.0/dist/esm/i18nextBrowserLanguageDetector.js';
+
+
+// Funció per inicialitzar el selector de textos
+function initializeSampleTextSelector() {
+    const select = document.getElementById('sample-text-select');
+    const textarea = document.getElementById('input-text');
+
+    // Afegir les opcions al selector
+    Object.entries(sampleTexts).forEach(([key, { title }]) => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = title;
+        select.appendChild(option);
+    });
+
+    // Event listener pel canvi de selecció
+    select.addEventListener('change', (e) => {
+        const selectedKey = e.target.value;
+        if (selectedKey && sampleTexts[selectedKey]) {
+            textarea.value = sampleTexts[selectedKey].text;
+            updateInputWordCount(); // Actualitzar el comptador de paraules
+        } else {
+            textarea.value = ''; // Netejar el textarea si es selecciona l'opció buida
+            updateInputWordCount();
+        }
+    });
+}
 
 /**
  * Divide el texto de entrada en un array de palabras y limpia espacios innecesarios.
@@ -244,16 +274,29 @@ function updateProgressBar(current, total) {
 function toggleInputPopup(visible) {
     const popup = document.getElementById('input-popup');
     const overlay = document.getElementById('popup-overlay');
-    const configBtn = document.getElementById('config-btn');
 
     if (visible) {
+        // Mostrar
         popup.style.display = 'block';
         overlay.style.display = 'block';
-        configBtn.style.display = 'none';
+        // Forcem un reflow abans d'afegir la classe
+        popup.offsetHeight;
+        overlay.classList.add('visible');
+        popup.classList.add('visible');
     } else {
-        popup.style.display = 'none';
-        overlay.style.display = 'none';
-        configBtn.style.display = 'flex';
+        // Amagar
+        overlay.classList.add('hiding');
+        popup.classList.add('hiding');
+        popup.classList.remove('visible');
+        overlay.classList.remove('visible');
+
+        setTimeout(() => {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            popup.classList.remove('hiding');
+            overlay.classList.remove('hiding');
+        }, 300);
+
     }
 }
 
@@ -291,7 +334,7 @@ function updateInputWordCount() {
 document.addEventListener('DOMContentLoaded', () => {
     // Mostrar el popup inicialment
     toggleInputPopup(true);
-    
+
     // Event listener per l'overlay
     const overlay = document.getElementById('popup-overlay');
     if (overlay) {
@@ -353,6 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Initialize settings on load
+    initializeSampleTextSelector();
     initializeTheme();
     initializeFontSize();
 });
