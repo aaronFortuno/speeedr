@@ -4,15 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Speed Reading Practice</title>
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="top-controls">
     <button id="config-btn" class="icon-btn" title="Configurar texto">⚙️</button>
     <button id="theme-toggle" class="icon-btn" title="Modo Oscuro">🔅</button>
+    <!--
     <button id="language-btn" class="icon-btn">
         <span id="current-language">🌐</span>
     </button>
+    -->
 </div>
 
 <!-- Afegeix un popup pel selector d'idioma -->
@@ -34,13 +37,15 @@
 
 <div id="main-container">
     <div id="focus-guide"></div>
-    <div id="word-display">Preparado</div>
+    <div id="word-display">...</div>
 </div>
 
+<div id="popup-overlay"></div>
 <div id="input-popup" role="dialog" aria-modal="true" aria-labelledby="input-popup-label">
     <h3 id="input-popup-label">Configuració de l'exercici</h3>
     <label for="input-text"></label>
     <textarea id="input-text" placeholder="Enganxa aquí el teu text..."></textarea>
+    <div id="word-count" class="word-count-info">0 paraules</div>
 
     <div class="config-row">
         <label for="start-wpm">Velocitat inicial (PPM):</label>
@@ -54,15 +59,21 @@
 
     <div class="config-row">
         <label for="acceleration-time">Temps d'acceleració (segons):</label>
-        <input type="number" id="acceleration-time" min="1" max="60" value="10" />
+        <input type="number" id="acceleration-time" min="1" max="60" value="20" />
     </div>
-
-    <button id="start-button" class="primary-btn">Començar!</button>
 </div>
 
-<div id="controls-overlay" style="display:none;">
-    <button id="stop-button" class="primary-btn stop-btn" style="display:none;">Aturar</button>
+<div id="controls-overlay">
+    <div id="word-counter">0/0</div>
+    <button id="start-button" class="icon-btn" title="Començar">
+        <i class="fas fa-play"></i>
+    </button>
+    <button id="stop-button" class="icon-btn" style="display:none;" title="Aturar">
+        <i class="fas fa-stop"></i>
+    </button>
+    <div id="wpm-counter">0 PPM</div>
 </div>
+
 
 <div id="progress-bar-container" aria-hidden="true">
     <div id="progress-bar"></div>

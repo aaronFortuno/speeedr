@@ -91,6 +91,10 @@ body {
     letter-spacing: -1px;
     white-space: nowrap;
     user-select: none;
+    position: relative;
+    background-color: var(--bg-color); /* Mateix color que el fons */
+    padding: 0.2em 0.5em; /* Afegim padding per evitar que la guia es vegi pels costats */
+    z-index: 1; /* Col·loquem el text per sobre de la guia */
 }
 
 .highlight {
@@ -129,7 +133,20 @@ body {
     max-width: 500px;
     border-radius: 12px;
     display: block;
+    animation: fadeIn 0.3s ease-in-out;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
 
 #input-popup h3 {
     margin-bottom: 15px;
@@ -146,6 +163,16 @@ body {
     color: var(--text-color);
     font-family: inherit;
     resize: vertical;
+}
+
+.word-count-info {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.9rem;
+    text-align: right;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--ui-gray);
 }
 
 .config-row {
@@ -187,8 +214,26 @@ body {
     background-color: #dc3545;
 }
 
+#word-counter {
+    color: var(--progress-fill);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-right: 15px;
+    min-width: 70px;
+    text-align: right;
+    font-family: 'Segoe UI', monospace;
+}
+
 #controls-overlay {
-    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
 }
 
 /* Guía visual (línea vertical) */
@@ -198,11 +243,32 @@ body {
     left: 33.33%; /* un tercio de la pantalla */
     transform: translate(-50%, -50%);
     width: 5px;
-    height: 150px;
+    height: 100%;
     background-color: var(--accent-color);
-    opacity: 0.1;
+    opacity: 0.2;
     pointer-events: none;
+    z-index: 0; /* Col·loquem la guia per sota del text */
 }
+
+#popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#input-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    /* ... resta d'estils ... */
+}
+
 
 /* Estils per al botó d'idioma i el seu popup */
 #language-btn {
@@ -249,3 +315,14 @@ body {
 .lang-option:hover {
     background-color: var(--hover-color);
 }
+
+#wpm-counter {
+    color: var(--progress-fill);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-left: 15px;
+    min-width: 70px;
+    text-align: left;
+    font-family: 'Segoe UI', monospace;
+}
+
