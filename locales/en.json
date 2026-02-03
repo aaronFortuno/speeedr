@@ -1,0 +1,21 @@
+{
+  "common": {
+    "start": "Start",
+    "stop": "Stop",
+    "config": "Settings",
+    "theme": "Theme"
+  },
+  "settings": {
+    "startSpeed": "Initial Speed",
+    "targetSpeed": "Target Speed",
+    "accelerationTime": "Acceleration Time",
+    "inputPlaceholder": "Enter text here...",
+    "wpm": "words per minute"
+  },
+  "messages": {
+    "noText": "Please enter text to practice.",
+    "invalidSpeed": "Initial speed must be lower than target speed.",
+    "noWords": "No valid words found in text.",
+    "finished": "Finished!"
+  }
+}

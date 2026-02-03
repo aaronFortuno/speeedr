@@ -1,0 +1,21 @@
+{
+  "common": {
+    "start": "Empezar",
+    "stop": "Parar",
+    "config": "Configuración",
+    "theme": "Tema"
+  },
+  "settings": {
+    "startSpeed": "Velocidad inicial",
+    "targetSpeed": "Velocidad objetivo",
+    "accelerationTime": "Tiempo de aceleración",
+    "inputPlaceholder": "Introduce el texto aquí...",
+    "wpm": "palabras por minuto"
+  },
+  "messages": {
+    "noText": "Por favor, introduce un texto para practicar.",
+    "invalidSpeed": "La velocidad inicial debe ser menor que la velocidad objetivo.",
+    "noWords": "No se encontraron palabras válidas en el texto.",
+    "finished": "¡Fin!"
+  }
+}

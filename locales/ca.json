@@ -1,0 +1,21 @@
+{
+  "common": {
+    "start": "Començar",
+    "stop": "Aturar",
+    "config": "Configuració",
+    "theme": "Tema"
+  },
+  "settings": {
+    "startSpeed": "Velocitat inicial",
+    "targetSpeed": "Velocitat objectiu",
+    "accelerationTime": "Temps d'acceleració",
+    "inputPlaceholder": "Introdueix el text aquí...",
+    "wpm": "paraules per minut"
+  },
+  "messages": {
+    "noText": "Si us plau, introdueix un text per practicar.",
+    "invalidSpeed": "La velocitat inicial ha de ser menor que la velocitat objectiu.",
+    "noWords": "No s'han trobat paraules vàlides al text.",
+    "finished": "Fi!"
+  }
+}

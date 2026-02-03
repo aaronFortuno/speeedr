@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speed Reading Practice</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="top-controls">
+    <button id="config-btn" class="icon-btn" title="Configurar texto">⚙️</button>
+    <button id="theme-toggle" class="icon-btn" title="Modo Oscuro">🔅</button>
+    <button id="language-btn" class="icon-btn">
+        <span id="current-language">🌐</span>
+    </button>
+</div>
+
+<!-- Afegeix un popup pel selector d'idioma -->
+<div id="language-popup" class="popup">
+    <div class="popup-content">
+        <button class="lang-option" data-lang="ca">Català</button>
+        <button class="lang-option" data-lang="es">Español</button>
+        <button class="lang-option" data-lang="en">English</button>
+    </div>
+</div>
+
+
+<div class="font-slider-container">
+    <span style="font-size: 0.8rem;">A+</span>
+    <label for="font-size-slider"></label>
+    <input type="range" id="font-size-slider" min="2" max="12" step="0.5" value="5" />
+    <span style="font-size: 0.8rem;">A-</span>
+</div>
+
+<div id="main-container">
+    <div id="focus-guide"></div>
+    <div id="word-display">Preparado</div>
+</div>
+
+<div id="input-popup" role="dialog" aria-modal="true" aria-labelledby="input-popup-label">
+    <h3 id="input-popup-label">Configuració de l'exercici</h3>
+    <label for="input-text"></label>
+    <textarea id="input-text" placeholder="Enganxa aquí el teu text..."></textarea>
+
+    <div class="config-row">
+        <label for="start-wpm">Velocitat inicial (PPM):</label>
+        <input type="number" id="start-wpm" min="50" max="1000" value="100" />
+    </div>
+
+    <div class="config-row">
+        <label for="target-wpm">Velocitat objectiu (PPM):</label>
+        <input type="number" id="target-wpm" min="50" max="1000" value="300" />
+    </div>
+
+    <div class="config-row">
+        <label for="acceleration-time">Temps d'acceleració (segons):</label>
+        <input type="number" id="acceleration-time" min="1" max="60" value="10" />
+    </div>
+
+    <button id="start-button" class="primary-btn">Començar!</button>
+</div>
+
+<div id="controls-overlay" style="display:none;">
+    <button id="stop-button" class="primary-btn stop-btn" style="display:none;">Aturar</button>
+</div>
+
+<div id="progress-bar-container" aria-hidden="true">
+    <div id="progress-bar"></div>
+</div>
+
+<script type="module" src="script.js"></script>
+</body>
+</html>
